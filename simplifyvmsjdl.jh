@@ -3,7 +3,7 @@ entity BasicDetails  {
 JobRole String required,
 WorkFromHome Boolean required,
 Type JobType required,
-//Shift Jobshift required,
+Shift Jobshift required,
 MinSalary Long,
 MaxSalRY Long,
 Openings Integer required,
@@ -12,6 +12,9 @@ WorkTimings String required,
 MinEducation Qualification required,
 Experience RequiredExp required,
 Gender GenderReq required
+}
+enum Jobshift{
+Night, Morning
 }
 
 enum JobType{
@@ -88,14 +91,14 @@ Name String required,
 MobileNo Long required
 }
 
-//relationship OneToOne{
-//BasicDetails{jobDetails} to JobDetails,
-//JobDetails{interviewInformation} to InterviewInformation,
-//InterviewInformation{address} to CompanyAddress
-//}
-//relationship OneToMany{
-//Apply{basicDetails} to BasicDetails
-//}
+relationship OneToOne{
+BasicDetails{jobDetails} to JobDetails,JobDetails{interviewInformation} to InterviewInformation,
+
+}
+
+relationship OneToMany{
+Apply{basicDetails} to BasicDetails
+}
 
 
 //

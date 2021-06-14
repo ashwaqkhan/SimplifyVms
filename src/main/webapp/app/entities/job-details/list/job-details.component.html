@@ -62,6 +62,7 @@
           <th scope="col"><span jhiTranslate="simplifyVmsApp.jobDetails.english">English</span></th>
           <th scope="col"><span jhiTranslate="simplifyVmsApp.jobDetails.jobDescription">Job Description</span></th>
           <th scope="col"><span jhiTranslate="simplifyVmsApp.jobDetails.securityDepositCharged">Security Deposit Charged</span></th>
+          <th scope="col"><span jhiTranslate="simplifyVmsApp.jobDetails.interviewInformation">Interview Information</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -75,6 +76,13 @@
           <td>{{ jobDetails.jobDescription }}</td>
           <td jhiTranslate="{{ 'simplifyVmsApp.DepositCharged.' + jobDetails.securityDepositCharged }}">
             {{ jobDetails.securityDepositCharged }}
+          </td>
+          <td>
+            <div *ngIf="jobDetails.interviewInformation">
+              <a [routerLink]="['/interview-information', jobDetails.interviewInformation?.id, 'view']">{{
+                jobDetails.interviewInformation?.id
+              }}</a>
+            </div>
           </td>
           <td class="text-right">
             <div class="btn-group">

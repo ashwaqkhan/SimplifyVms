@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { JobType } from 'app/entities/enumerations/job-type.model';
+import { Jobshift } from 'app/entities/enumerations/jobshift.model';
 import { Qualification } from 'app/entities/enumerations/qualification.model';
 import { RequiredExp } from 'app/entities/enumerations/required-exp.model';
 import { GenderReq } from 'app/entities/enumerations/gender-req.model';
@@ -29,6 +30,7 @@ describe('Service Tests', () => {
         jobRole: 'AAAAAAA',
         workFromHome: false,
         type: JobType.PartTime,
+        shift: Jobshift.Night,
         minSalary: 0,
         maxSalRY: 0,
         openings: 0,
@@ -75,6 +77,7 @@ describe('Service Tests', () => {
             jobRole: 'BBBBBB',
             workFromHome: true,
             type: 'BBBBBB',
+            shift: 'BBBBBB',
             minSalary: 1,
             maxSalRY: 1,
             openings: 1,
@@ -101,12 +104,12 @@ describe('Service Tests', () => {
           {
             jobRole: 'BBBBBB',
             type: 'BBBBBB',
+            shift: 'BBBBBB',
             minSalary: 1,
             maxSalRY: 1,
             openings: 1,
-            workingDays: 'BBBBBB',
-            minEducation: 'BBBBBB',
-            gender: 'BBBBBB',
+            workTimings: 'BBBBBB',
+            experience: 'BBBBBB',
           },
           new BasicDetails()
         );
@@ -129,6 +132,7 @@ describe('Service Tests', () => {
             jobRole: 'BBBBBB',
             workFromHome: true,
             type: 'BBBBBB',
+            shift: 'BBBBBB',
             minSalary: 1,
             maxSalRY: 1,
             openings: 1,
@@ -188,7 +192,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique BasicDetails to an array', () => {
-          const basicDetailsArray: IBasicDetails[] = [{ id: 123 }, { id: 456 }, { id: 5130 }];
+          const basicDetailsArray: IBasicDetails[] = [{ id: 123 }, { id: 456 }, { id: 21462 }];
           const basicDetailsCollection: IBasicDetails[] = [{ id: 123 }];
           expectedResult = service.addBasicDetailsToCollectionIfMissing(basicDetailsCollection, ...basicDetailsArray);
           expect(expectedResult).toHaveLength(3);

@@ -18,6 +18,12 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "fieldName": "shift",
+      "fieldType": "Jobshift",
+      "fieldValues": "Night,Morning",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "minSalary",
       "fieldType": "Long"
     },
@@ -59,7 +65,21 @@
       "fieldValidateRules": ["required"]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "jobDetails",
+      "otherEntityRelationshipName": "basicDetails",
+      "relationshipName": "jobDetails",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "apply",
+      "otherEntityRelationshipName": "basicDetails",
+      "relationshipName": "apply"
+    }
+  ],
   "entityTableName": "basic_details",
   "dto": "no",
   "pagination": "no",

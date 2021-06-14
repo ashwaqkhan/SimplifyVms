@@ -9,6 +9,10 @@ import { of, Subject } from 'rxjs';
 
 import { BasicDetailsService } from '../service/basic-details.service';
 import { IBasicDetails, BasicDetails } from '../basic-details.model';
+import { IJobDetails } from 'app/entities/job-details/job-details.model';
+import { JobDetailsService } from 'app/entities/job-details/service/job-details.service';
+import { IApply } from 'app/entities/apply/apply.model';
+import { ApplyService } from 'app/entities/apply/service/apply.service';
 
 import { BasicDetailsUpdateComponent } from './basic-details-update.component';
 
@@ -18,6 +22,8 @@ describe('Component Tests', () => {
     let fixture: ComponentFixture<BasicDetailsUpdateComponent>;
     let activatedRoute: ActivatedRoute;
     let basicDetailsService: BasicDetailsService;
+    let jobDetailsService: JobDetailsService;
+    let applyService: ApplyService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -31,18 +37,63 @@ describe('Component Tests', () => {
       fixture = TestBed.createComponent(BasicDetailsUpdateComponent);
       activatedRoute = TestBed.inject(ActivatedRoute);
       basicDetailsService = TestBed.inject(BasicDetailsService);
+      jobDetailsService = TestBed.inject(JobDetailsService);
+      applyService = TestBed.inject(ApplyService);
 
       comp = fixture.componentInstance;
     });
 
     describe('ngOnInit', () => {
+      it('Should call jobDetails query and add missing value', () => {
+        const basicDetails: IBasicDetails = { id: 456 };
+        const jobDetails: IJobDetails = { id: 69084 };
+        basicDetails.jobDetails = jobDetails;
+
+        const jobDetailsCollection: IJobDetails[] = [{ id: 76865 }];
+        spyOn(jobDetailsService, 'query').and.returnValue(of(new HttpResponse({ body: jobDetailsCollection })));
+        const expectedCollection: IJobDetails[] = [jobDetails, ...jobDetailsCollection];
+        spyOn(jobDetailsService, 'addJobDetailsToCollectionIfMissing').and.returnValue(expectedCollection);
+
+        activatedRoute.data = of({ basicDetails });
+        comp.ngOnInit();
+
+        expect(jobDetailsService.query).toHaveBeenCalled();
+        expect(jobDetailsService.addJobDetailsToCollectionIfMissing).toHaveBeenCalledWith(jobDetailsCollection, jobDetails);
+        expect(comp.jobDetailsCollection).toEqual(expectedCollection);
+      });
+
+      it('Should call Apply query and add missing value', () => {
+        const basicDetails: IBasicDetails = { id: 456 };
+        const apply: IApply = { id: 27308 };
+        basicDetails.apply = apply;
+
+        const applyCollection: IApply[] = [{ id: 12334 }];
+        spyOn(applyService, 'query').and.returnValue(of(new HttpResponse({ body: applyCollection })));
+        const additionalApplies = [apply];
+        const expectedCollection: IApply[] = [...additionalApplies, ...applyCollection];
+        spyOn(applyService, 'addApplyToCollectionIfMissing').and.returnValue(expectedCollection);
+
+        activatedRoute.data = of({ basicDetails });
+        comp.ngOnInit();
+
+        expect(applyService.query).toHaveBeenCalled();
+        expect(applyService.addApplyToCollectionIfMissing).toHaveBeenCalledWith(applyCollection, ...additionalApplies);
+        expect(comp.appliesSharedCollection).toEqual(expectedCollection);
+      });
+
       it('Should update editForm', () => {
         const basicDetails: IBasicDetails = { id: 456 };
+        const jobDetails: IJobDetails = { id: 48701 };
+        basicDetails.jobDetails = jobDetails;
+        const apply: IApply = { id: 52230 };
+        basicDetails.apply = apply;
 
         activatedRoute.data = of({ basicDetails });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(basicDetails));
+        expect(comp.jobDetailsCollection).toContain(jobDetails);
+        expect(comp.appliesSharedCollection).toContain(apply);
       });
     });
 
@@ -107,6 +158,24 @@ describe('Component Tests', () => {
         expect(basicDetailsService.update).toHaveBeenCalledWith(basicDetails);
         expect(comp.isSaving).toEqual(false);
         expect(comp.previousState).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('Tracking relationships identifiers', () => {
+      describe('trackJobDetailsById', () => {
+        it('Should return tracked JobDetails primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackJobDetailsById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
+      });
+
+      describe('trackApplyById', () => {
+        it('Should return tracked Apply primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackApplyById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
       });
     });
   });

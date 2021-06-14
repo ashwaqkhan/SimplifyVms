@@ -9,6 +9,8 @@ import { of, Subject } from 'rxjs';
 
 import { JobDetailsService } from '../service/job-details.service';
 import { IJobDetails, JobDetails } from '../job-details.model';
+import { IInterviewInformation } from 'app/entities/interview-information/interview-information.model';
+import { InterviewInformationService } from 'app/entities/interview-information/service/interview-information.service';
 
 import { JobDetailsUpdateComponent } from './job-details-update.component';
 
@@ -18,6 +20,7 @@ describe('Component Tests', () => {
     let fixture: ComponentFixture<JobDetailsUpdateComponent>;
     let activatedRoute: ActivatedRoute;
     let jobDetailsService: JobDetailsService;
+    let interviewInformationService: InterviewInformationService;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -31,18 +34,43 @@ describe('Component Tests', () => {
       fixture = TestBed.createComponent(JobDetailsUpdateComponent);
       activatedRoute = TestBed.inject(ActivatedRoute);
       jobDetailsService = TestBed.inject(JobDetailsService);
+      interviewInformationService = TestBed.inject(InterviewInformationService);
 
       comp = fixture.componentInstance;
     });
 
     describe('ngOnInit', () => {
+      it('Should call interviewInformation query and add missing value', () => {
+        const jobDetails: IJobDetails = { id: 456 };
+        const interviewInformation: IInterviewInformation = { id: 69416 };
+        jobDetails.interviewInformation = interviewInformation;
+
+        const interviewInformationCollection: IInterviewInformation[] = [{ id: 7532 }];
+        spyOn(interviewInformationService, 'query').and.returnValue(of(new HttpResponse({ body: interviewInformationCollection })));
+        const expectedCollection: IInterviewInformation[] = [interviewInformation, ...interviewInformationCollection];
+        spyOn(interviewInformationService, 'addInterviewInformationToCollectionIfMissing').and.returnValue(expectedCollection);
+
+        activatedRoute.data = of({ jobDetails });
+        comp.ngOnInit();
+
+        expect(interviewInformationService.query).toHaveBeenCalled();
+        expect(interviewInformationService.addInterviewInformationToCollectionIfMissing).toHaveBeenCalledWith(
+          interviewInformationCollection,
+          interviewInformation
+        );
+        expect(comp.interviewInformationsCollection).toEqual(expectedCollection);
+      });
+
       it('Should update editForm', () => {
         const jobDetails: IJobDetails = { id: 456 };
+        const interviewInformation: IInterviewInformation = { id: 90602 };
+        jobDetails.interviewInformation = interviewInformation;
 
         activatedRoute.data = of({ jobDetails });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(jobDetails));
+        expect(comp.interviewInformationsCollection).toContain(interviewInformation);
       });
     });
 
@@ -107,6 +135,16 @@ describe('Component Tests', () => {
         expect(jobDetailsService.update).toHaveBeenCalledWith(jobDetails);
         expect(comp.isSaving).toEqual(false);
         expect(comp.previousState).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('Tracking relationships identifiers', () => {
+      describe('trackInterviewInformationById', () => {
+        it('Should return tracked InterviewInformation primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackInterviewInformationById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
       });
     });
   });

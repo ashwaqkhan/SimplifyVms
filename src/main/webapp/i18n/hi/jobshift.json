@@ -1,0 +1,9 @@
+{
+  "simplifyVmsApp": {
+    "Jobshift": {
+      "null": "",
+      "Night": "Night",
+      "Morning": "Morning"
+    }
+  }
+}

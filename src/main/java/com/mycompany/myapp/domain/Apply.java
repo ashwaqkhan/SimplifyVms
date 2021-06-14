@@ -1,6 +1,9 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -29,6 +32,11 @@ public class Apply implements Serializable {
     @NotNull
     @Column(name = "mobile_no", nullable = false)
     private Long mobileNo;
+
+    @OneToMany(mappedBy = "apply")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "jobDetails", "apply" }, allowSetters = true)
+    private Set<BasicDetails> basicDetails = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -68,6 +76,37 @@ public class Apply implements Serializable {
 
     public void setMobileNo(Long mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public Set<BasicDetails> getBasicDetails() {
+        return this.basicDetails;
+    }
+
+    public Apply basicDetails(Set<BasicDetails> basicDetails) {
+        this.setBasicDetails(basicDetails);
+        return this;
+    }
+
+    public Apply addBasicDetails(BasicDetails basicDetails) {
+        this.basicDetails.add(basicDetails);
+        basicDetails.setApply(this);
+        return this;
+    }
+
+    public Apply removeBasicDetails(BasicDetails basicDetails) {
+        this.basicDetails.remove(basicDetails);
+        basicDetails.setApply(null);
+        return this;
+    }
+
+    public void setBasicDetails(Set<BasicDetails> basicDetails) {
+        if (this.basicDetails != null) {
+            this.basicDetails.forEach(i -> i.setApply(null));
+        }
+        if (basicDetails != null) {
+            basicDetails.forEach(i -> i.setApply(this));
+        }
+        this.basicDetails = basicDetails;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

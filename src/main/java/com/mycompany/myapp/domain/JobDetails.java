@@ -44,6 +44,10 @@ public class JobDetails implements Serializable {
     @Column(name = "security_deposit_charged", nullable = false)
     private DepositCharged securityDepositCharged;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private InterviewInformation interviewInformation;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -108,6 +112,19 @@ public class JobDetails implements Serializable {
 
     public void setSecurityDepositCharged(DepositCharged securityDepositCharged) {
         this.securityDepositCharged = securityDepositCharged;
+    }
+
+    public InterviewInformation getInterviewInformation() {
+        return this.interviewInformation;
+    }
+
+    public JobDetails interviewInformation(InterviewInformation interviewInformation) {
+        this.setInterviewInformation(interviewInformation);
+        return this;
+    }
+
+    public void setInterviewInformation(InterviewInformation interviewInformation) {
+        this.interviewInformation = interviewInformation;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

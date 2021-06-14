@@ -32,6 +32,14 @@
             jobDetails.securityDepositCharged
           }}</span>
         </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.jobDetails.interviewInformation">Interview Information</span></dt>
+        <dd>
+          <div *ngIf="jobDetails.interviewInformation">
+            <a [routerLink]="['/interview-information', jobDetails.interviewInformation?.id, 'view']">{{
+              jobDetails.interviewInformation?.id
+            }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

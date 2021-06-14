@@ -71,6 +71,20 @@
         </div>
 
         <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.shift" for="field_shift">Shift</label>
+          <select class="form-control" name="shift" formControlName="shift" id="field_shift" data-cy="shift">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.Jobshift.null' | translate }}</option>
+            <option value="Night">{{ 'simplifyVmsApp.Jobshift.Night' | translate }}</option>
+            <option value="Morning">{{ 'simplifyVmsApp.Jobshift.Morning' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('shift')!.invalid && (editForm.get('shift')!.dirty || editForm.get('shift')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('shift')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.minSalary" for="field_minSalary">Min Salary</label>
           <input type="number" class="form-control" name="minSalary" id="field_minSalary" data-cy="minSalary" formControlName="minSalary" />
         </div>
@@ -204,6 +218,34 @@
               This field is required.
             </small>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.jobDetails" for="field_jobDetails">Job Details</label>
+          <select class="form-control" id="field_jobDetails" data-cy="jobDetails" name="jobDetails" formControlName="jobDetails">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                jobDetailsOption.id === editForm.get('jobDetails')!.value?.id ? editForm.get('jobDetails')!.value : jobDetailsOption
+              "
+              *ngFor="let jobDetailsOption of jobDetailsCollection; trackBy: trackJobDetailsById"
+            >
+              {{ jobDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.apply" for="field_apply">Apply</label>
+          <select class="form-control" id="field_apply" data-cy="apply" name="apply" formControlName="apply">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="applyOption.id === editForm.get('apply')!.value?.id ? editForm.get('apply')!.value : applyOption"
+              *ngFor="let applyOption of appliesSharedCollection; trackBy: trackApplyById"
+            >
+              {{ applyOption.id }}
+            </option>
+          </select>
         </div>
       </div>
 

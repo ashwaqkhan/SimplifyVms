@@ -11,6 +11,7 @@ import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.domain.BasicDetails;
 import com.mycompany.myapp.domain.enumeration.GenderReq;
 import com.mycompany.myapp.domain.enumeration.JobType;
+import com.mycompany.myapp.domain.enumeration.Jobshift;
 import com.mycompany.myapp.domain.enumeration.Qualification;
 import com.mycompany.myapp.domain.enumeration.RequiredExp;
 import com.mycompany.myapp.repository.BasicDetailsRepository;
@@ -49,6 +50,9 @@ class BasicDetailsResourceIT {
 
     private static final JobType DEFAULT_TYPE = JobType.PartTime;
     private static final JobType UPDATED_TYPE = JobType.FullTime;
+
+    private static final Jobshift DEFAULT_SHIFT = Jobshift.Night;
+    private static final Jobshift UPDATED_SHIFT = Jobshift.Morning;
 
     private static final Long DEFAULT_MIN_SALARY = 1L;
     private static final Long UPDATED_MIN_SALARY = 2L;
@@ -111,6 +115,7 @@ class BasicDetailsResourceIT {
             .jobRole(DEFAULT_JOB_ROLE)
             .workFromHome(DEFAULT_WORK_FROM_HOME)
             .type(DEFAULT_TYPE)
+            .shift(DEFAULT_SHIFT)
             .minSalary(DEFAULT_MIN_SALARY)
             .maxSalRY(DEFAULT_MAX_SAL_RY)
             .openings(DEFAULT_OPENINGS)
@@ -133,6 +138,7 @@ class BasicDetailsResourceIT {
             .jobRole(UPDATED_JOB_ROLE)
             .workFromHome(UPDATED_WORK_FROM_HOME)
             .type(UPDATED_TYPE)
+            .shift(UPDATED_SHIFT)
             .minSalary(UPDATED_MIN_SALARY)
             .maxSalRY(UPDATED_MAX_SAL_RY)
             .openings(UPDATED_OPENINGS)
@@ -165,6 +171,7 @@ class BasicDetailsResourceIT {
         assertThat(testBasicDetails.getJobRole()).isEqualTo(DEFAULT_JOB_ROLE);
         assertThat(testBasicDetails.getWorkFromHome()).isEqualTo(DEFAULT_WORK_FROM_HOME);
         assertThat(testBasicDetails.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testBasicDetails.getShift()).isEqualTo(DEFAULT_SHIFT);
         assertThat(testBasicDetails.getMinSalary()).isEqualTo(DEFAULT_MIN_SALARY);
         assertThat(testBasicDetails.getMaxSalRY()).isEqualTo(DEFAULT_MAX_SAL_RY);
         assertThat(testBasicDetails.getOpenings()).isEqualTo(DEFAULT_OPENINGS);
@@ -239,6 +246,23 @@ class BasicDetailsResourceIT {
         int databaseSizeBeforeTest = basicDetailsRepository.findAll().size();
         // set the field null
         basicDetails.setType(null);
+
+        // Create the BasicDetails, which fails.
+
+        restBasicDetailsMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(basicDetails)))
+            .andExpect(status().isBadRequest());
+
+        List<BasicDetails> basicDetailsList = basicDetailsRepository.findAll();
+        assertThat(basicDetailsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkShiftIsRequired() throws Exception {
+        int databaseSizeBeforeTest = basicDetailsRepository.findAll().size();
+        // set the field null
+        basicDetails.setShift(null);
 
         // Create the BasicDetails, which fails.
 
@@ -367,6 +391,7 @@ class BasicDetailsResourceIT {
             .andExpect(jsonPath("$.[*].jobRole").value(hasItem(DEFAULT_JOB_ROLE)))
             .andExpect(jsonPath("$.[*].workFromHome").value(hasItem(DEFAULT_WORK_FROM_HOME.booleanValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].shift").value(hasItem(DEFAULT_SHIFT.toString())))
             .andExpect(jsonPath("$.[*].minSalary").value(hasItem(DEFAULT_MIN_SALARY.intValue())))
             .andExpect(jsonPath("$.[*].maxSalRY").value(hasItem(DEFAULT_MAX_SAL_RY.intValue())))
             .andExpect(jsonPath("$.[*].openings").value(hasItem(DEFAULT_OPENINGS)))
@@ -392,6 +417,7 @@ class BasicDetailsResourceIT {
             .andExpect(jsonPath("$.jobRole").value(DEFAULT_JOB_ROLE))
             .andExpect(jsonPath("$.workFromHome").value(DEFAULT_WORK_FROM_HOME.booleanValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.shift").value(DEFAULT_SHIFT.toString()))
             .andExpect(jsonPath("$.minSalary").value(DEFAULT_MIN_SALARY.intValue()))
             .andExpect(jsonPath("$.maxSalRY").value(DEFAULT_MAX_SAL_RY.intValue()))
             .andExpect(jsonPath("$.openings").value(DEFAULT_OPENINGS))
@@ -425,6 +451,7 @@ class BasicDetailsResourceIT {
             .jobRole(UPDATED_JOB_ROLE)
             .workFromHome(UPDATED_WORK_FROM_HOME)
             .type(UPDATED_TYPE)
+            .shift(UPDATED_SHIFT)
             .minSalary(UPDATED_MIN_SALARY)
             .maxSalRY(UPDATED_MAX_SAL_RY)
             .openings(UPDATED_OPENINGS)
@@ -449,6 +476,7 @@ class BasicDetailsResourceIT {
         assertThat(testBasicDetails.getJobRole()).isEqualTo(UPDATED_JOB_ROLE);
         assertThat(testBasicDetails.getWorkFromHome()).isEqualTo(UPDATED_WORK_FROM_HOME);
         assertThat(testBasicDetails.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testBasicDetails.getShift()).isEqualTo(UPDATED_SHIFT);
         assertThat(testBasicDetails.getMinSalary()).isEqualTo(UPDATED_MIN_SALARY);
         assertThat(testBasicDetails.getMaxSalRY()).isEqualTo(UPDATED_MAX_SAL_RY);
         assertThat(testBasicDetails.getOpenings()).isEqualTo(UPDATED_OPENINGS);
@@ -542,12 +570,12 @@ class BasicDetailsResourceIT {
         partialUpdatedBasicDetails
             .jobRole(UPDATED_JOB_ROLE)
             .type(UPDATED_TYPE)
+            .shift(UPDATED_SHIFT)
             .minSalary(UPDATED_MIN_SALARY)
             .maxSalRY(UPDATED_MAX_SAL_RY)
             .openings(UPDATED_OPENINGS)
-            .workingDays(UPDATED_WORKING_DAYS)
-            .minEducation(UPDATED_MIN_EDUCATION)
-            .gender(UPDATED_GENDER);
+            .workTimings(UPDATED_WORK_TIMINGS)
+            .experience(UPDATED_EXPERIENCE);
 
         restBasicDetailsMockMvc
             .perform(
@@ -564,14 +592,15 @@ class BasicDetailsResourceIT {
         assertThat(testBasicDetails.getJobRole()).isEqualTo(UPDATED_JOB_ROLE);
         assertThat(testBasicDetails.getWorkFromHome()).isEqualTo(DEFAULT_WORK_FROM_HOME);
         assertThat(testBasicDetails.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testBasicDetails.getShift()).isEqualTo(UPDATED_SHIFT);
         assertThat(testBasicDetails.getMinSalary()).isEqualTo(UPDATED_MIN_SALARY);
         assertThat(testBasicDetails.getMaxSalRY()).isEqualTo(UPDATED_MAX_SAL_RY);
         assertThat(testBasicDetails.getOpenings()).isEqualTo(UPDATED_OPENINGS);
-        assertThat(testBasicDetails.getWorkingDays()).isEqualTo(UPDATED_WORKING_DAYS);
-        assertThat(testBasicDetails.getWorkTimings()).isEqualTo(DEFAULT_WORK_TIMINGS);
-        assertThat(testBasicDetails.getMinEducation()).isEqualTo(UPDATED_MIN_EDUCATION);
-        assertThat(testBasicDetails.getExperience()).isEqualTo(DEFAULT_EXPERIENCE);
-        assertThat(testBasicDetails.getGender()).isEqualTo(UPDATED_GENDER);
+        assertThat(testBasicDetails.getWorkingDays()).isEqualTo(DEFAULT_WORKING_DAYS);
+        assertThat(testBasicDetails.getWorkTimings()).isEqualTo(UPDATED_WORK_TIMINGS);
+        assertThat(testBasicDetails.getMinEducation()).isEqualTo(DEFAULT_MIN_EDUCATION);
+        assertThat(testBasicDetails.getExperience()).isEqualTo(UPDATED_EXPERIENCE);
+        assertThat(testBasicDetails.getGender()).isEqualTo(DEFAULT_GENDER);
     }
 
     @Test
@@ -590,6 +619,7 @@ class BasicDetailsResourceIT {
             .jobRole(UPDATED_JOB_ROLE)
             .workFromHome(UPDATED_WORK_FROM_HOME)
             .type(UPDATED_TYPE)
+            .shift(UPDATED_SHIFT)
             .minSalary(UPDATED_MIN_SALARY)
             .maxSalRY(UPDATED_MAX_SAL_RY)
             .openings(UPDATED_OPENINGS)
@@ -614,6 +644,7 @@ class BasicDetailsResourceIT {
         assertThat(testBasicDetails.getJobRole()).isEqualTo(UPDATED_JOB_ROLE);
         assertThat(testBasicDetails.getWorkFromHome()).isEqualTo(UPDATED_WORK_FROM_HOME);
         assertThat(testBasicDetails.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testBasicDetails.getShift()).isEqualTo(UPDATED_SHIFT);
         assertThat(testBasicDetails.getMinSalary()).isEqualTo(UPDATED_MIN_SALARY);
         assertThat(testBasicDetails.getMaxSalRY()).isEqualTo(UPDATED_MAX_SAL_RY);
         assertThat(testBasicDetails.getOpenings()).isEqualTo(UPDATED_OPENINGS);
@@ -730,6 +761,7 @@ class BasicDetailsResourceIT {
             .andExpect(jsonPath("$.[*].jobRole").value(hasItem(DEFAULT_JOB_ROLE)))
             .andExpect(jsonPath("$.[*].workFromHome").value(hasItem(DEFAULT_WORK_FROM_HOME.booleanValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].shift").value(hasItem(DEFAULT_SHIFT.toString())))
             .andExpect(jsonPath("$.[*].minSalary").value(hasItem(DEFAULT_MIN_SALARY.intValue())))
             .andExpect(jsonPath("$.[*].maxSalRY").value(hasItem(DEFAULT_MAX_SAL_RY.intValue())))
             .andExpect(jsonPath("$.[*].openings").value(hasItem(DEFAULT_OPENINGS)))

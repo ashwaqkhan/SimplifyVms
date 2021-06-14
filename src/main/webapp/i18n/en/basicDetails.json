@@ -22,6 +22,7 @@
       "jobRole": "Job Role",
       "workFromHome": "Work From Home",
       "type": "Type",
+      "shift": "Shift",
       "minSalary": "Min Salary",
       "maxSalRY": "Max Sal RY",
       "openings": "Openings",
@@ -29,7 +30,9 @@
       "workTimings": "Work Timings",
       "minEducation": "Min Education",
       "experience": "Experience",
-      "gender": "Gender"
+      "gender": "Gender",
+      "jobDetails": "Job Details",
+      "apply": "Apply"
     }
   }
 }

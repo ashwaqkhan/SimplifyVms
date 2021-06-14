@@ -1,0 +1,26 @@
+{
+  "simplifyVmsApp": {
+    "apply": {
+      "home": {
+        "title": "Applies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Apply बनाएँ",
+        "createOrEditLabel": "Apply बनाएँ या संपादित करें",
+        "search": "Apply खोजें",
+        "notFound": "No Applies found"
+      },
+      "created": "एक नया Apply [identifier: {{ param }}] तैयार है",
+      "updated": "एक Apply [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Apply [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Apply [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Apply"
+      },
+      "id": "ID",
+      "name": "Name",
+      "mobileNo": "Mobile No"
+    }
+  }
+}

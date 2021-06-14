@@ -1,0 +1,9 @@
+{
+  "simplifyVmsApp": {
+    "JobType": {
+      "null": "",
+      "PartTime": "PartTime",
+      "FullTime": "FullTime"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "BasicDetails",
+  "fields": [
+    {
+      "fieldName": "jobRole",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "workFromHome",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "JobType",
+      "fieldValues": "PartTime,FullTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "minSalary",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "maxSalRY",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "openings",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "workingDays",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "workTimings",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "minEducation",
+      "fieldType": "Qualification",
+      "fieldValues": "BelowTenth,Tenth,Diploma,ITI,Graduate,Post_Graduate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "experience",
+      "fieldType": "RequiredExp",
+      "fieldValues": "Fresher,Experienced",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderReq",
+      "fieldValues": "Male,Female,Any",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "basic_details",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210614065806"
+}

@@ -7,6 +7,10 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "एंटिटीज़",
+        "basicDetails": "Basic Details",
+        "jobDetails": "Job Details",
+        "interviewInformation": "Interview Information",
+        "apply": "Apply",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,50 @@
+{
+  "name": "InterviewInformation",
+  "fields": [
+    {
+      "fieldName": "companyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "recruitersName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hRwhatsappNumber",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "contactEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "buildingName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "area",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "recieveApplicationsFrom",
+      "fieldType": "Application",
+      "fieldValues": "EntireCity,EntireIndia"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "interview_information",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210614065808"
+}

@@ -42,7 +42,9 @@
     "jwtSecretKey": "MmVmMDg1MWQwM2U0MjhlNGRjNjYwNmQ0ZjE0ZGNmODc5NDg3ZTUzMWNiMGJiZjM5YWNiYjVjMzU3ZDE3MGZjMGI2NzQyM2M0MjZmNGI5OGFmOTA1NWE3YjJjZjM3MTZlNDhmYTg3NGFiOGIxNDhlZThlZjIxYmM0MGVjMzZjMzQ=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["BasicDetails", "JobDetails", "InterviewInformation", "Apply"],
+    "lastLiquibaseTimestamp": 1623653889000
   },
   "git-provider": "GitHub",
   "git-company": "Prakarsha01",

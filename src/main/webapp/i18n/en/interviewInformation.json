@@ -1,0 +1,32 @@
+{
+  "simplifyVmsApp": {
+    "interviewInformation": {
+      "home": {
+        "title": "Interview Informations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Interview Information",
+        "createOrEditLabel": "Create or edit a Interview Information",
+        "search": "Search for Interview Information",
+        "notFound": "No Interview Informations found"
+      },
+      "created": "A new Interview Information is created with identifier {{ param }}",
+      "updated": "A Interview Information is updated with identifier {{ param }}",
+      "deleted": "A Interview Information is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Interview Information {{ id }}?"
+      },
+      "detail": {
+        "title": "Interview Information"
+      },
+      "id": "ID",
+      "companyName": "Company Name",
+      "recruitersName": "Recruiters Name",
+      "hRwhatsappNumber": "H Rwhatsapp Number",
+      "contactEmail": "Contact Email",
+      "buildingName": "Building Name",
+      "city": "City",
+      "area": "Area",
+      "recieveApplicationsFrom": "Recieve Applications From"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-basic-details-heading"
+        data-cy="BasicDetailsCreateUpdateHeading"
+        jhiTranslate="simplifyVmsApp.basicDetails.home.createOrEditLabel"
+      >
+        Create or edit a Basic Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.jobRole" for="field_jobRole">Job Role</label>
+          <input type="text" class="form-control" name="jobRole" id="field_jobRole" data-cy="jobRole" formControlName="jobRole" />
+          <div *ngIf="editForm.get('jobRole')!.invalid && (editForm.get('jobRole')!.dirty || editForm.get('jobRole')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('jobRole')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.workFromHome" for="field_workFromHome"
+            >Work From Home</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="workFromHome"
+            id="field_workFromHome"
+            data-cy="workFromHome"
+            formControlName="workFromHome"
+          />
+          <div
+            *ngIf="editForm.get('workFromHome')!.invalid && (editForm.get('workFromHome')!.dirty || editForm.get('workFromHome')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('workFromHome')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.JobType.null' | translate }}</option>
+            <option value="PartTime">{{ 'simplifyVmsApp.JobType.PartTime' | translate }}</option>
+            <option value="FullTime">{{ 'simplifyVmsApp.JobType.FullTime' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.minSalary" for="field_minSalary">Min Salary</label>
+          <input type="number" class="form-control" name="minSalary" id="field_minSalary" data-cy="minSalary" formControlName="minSalary" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.maxSalRY" for="field_maxSalRY">Max Sal RY</label>
+          <input type="number" class="form-control" name="maxSalRY" id="field_maxSalRY" data-cy="maxSalRY" formControlName="maxSalRY" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.openings" for="field_openings">Openings</label>
+          <input type="number" class="form-control" name="openings" id="field_openings" data-cy="openings" formControlName="openings" />
+          <div *ngIf="editForm.get('openings')!.invalid && (editForm.get('openings')!.dirty || editForm.get('openings')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('openings')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('openings')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.workingDays" for="field_workingDays"
+            >Working Days</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="workingDays"
+            id="field_workingDays"
+            data-cy="workingDays"
+            formControlName="workingDays"
+          />
+          <div *ngIf="editForm.get('workingDays')!.invalid && (editForm.get('workingDays')!.dirty || editForm.get('workingDays')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('workingDays')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.workTimings" for="field_workTimings"
+            >Work Timings</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="workTimings"
+            id="field_workTimings"
+            data-cy="workTimings"
+            formControlName="workTimings"
+          />
+          <div *ngIf="editForm.get('workTimings')!.invalid && (editForm.get('workTimings')!.dirty || editForm.get('workTimings')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('workTimings')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.minEducation" for="field_minEducation"
+            >Min Education</label
+          >
+          <select class="form-control" name="minEducation" formControlName="minEducation" id="field_minEducation" data-cy="minEducation">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.Qualification.null' | translate }}</option>
+            <option value="BelowTenth">{{ 'simplifyVmsApp.Qualification.BelowTenth' | translate }}</option>
+            <option value="Tenth">{{ 'simplifyVmsApp.Qualification.Tenth' | translate }}</option>
+            <option value="Diploma">{{ 'simplifyVmsApp.Qualification.Diploma' | translate }}</option>
+            <option value="ITI">{{ 'simplifyVmsApp.Qualification.ITI' | translate }}</option>
+            <option value="Graduate">{{ 'simplifyVmsApp.Qualification.Graduate' | translate }}</option>
+            <option value="Post_Graduate">{{ 'simplifyVmsApp.Qualification.Post_Graduate' | translate }}</option>
+          </select>
+          <div
+            *ngIf="editForm.get('minEducation')!.invalid && (editForm.get('minEducation')!.dirty || editForm.get('minEducation')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('minEducation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.experience" for="field_experience">Experience</label>
+          <select class="form-control" name="experience" formControlName="experience" id="field_experience" data-cy="experience">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.RequiredExp.null' | translate }}</option>
+            <option value="Fresher">{{ 'simplifyVmsApp.RequiredExp.Fresher' | translate }}</option>
+            <option value="Experienced">{{ 'simplifyVmsApp.RequiredExp.Experienced' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('experience')!.invalid && (editForm.get('experience')!.dirty || editForm.get('experience')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('experience')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.basicDetails.gender" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.GenderReq.null' | translate }}</option>
+            <option value="Male">{{ 'simplifyVmsApp.GenderReq.Male' | translate }}</option>
+            <option value="Female">{{ 'simplifyVmsApp.GenderReq.Female' | translate }}</option>
+            <option value="Any">{{ 'simplifyVmsApp.GenderReq.Any' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('gender')!.invalid && (editForm.get('gender')!.dirty || editForm.get('gender')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gender')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

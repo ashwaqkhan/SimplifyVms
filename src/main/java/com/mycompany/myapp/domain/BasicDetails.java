@@ -1,7 +1,9 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mycompany.myapp.domain.enumeration.GenderReq;
 import com.mycompany.myapp.domain.enumeration.JobType;
+import com.mycompany.myapp.domain.enumeration.Jobshift;
 import com.mycompany.myapp.domain.enumeration.Qualification;
 import com.mycompany.myapp.domain.enumeration.RequiredExp;
 import java.io.Serializable;
@@ -39,6 +41,11 @@ public class BasicDetails implements Serializable {
     @Column(name = "type", nullable = false)
     private JobType type;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "shift", nullable = false)
+    private Jobshift shift;
+
     @Column(name = "min_salary")
     private Long minSalary;
 
@@ -71,6 +78,15 @@ public class BasicDetails implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
     private GenderReq gender;
+
+    @JsonIgnoreProperties(value = { "interviewInformation" }, allowSetters = true)
+    @OneToOne
+    @JoinColumn(unique = true)
+    private JobDetails jobDetails;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "basicDetails" }, allowSetters = true)
+    private Apply apply;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -123,6 +139,19 @@ public class BasicDetails implements Serializable {
 
     public void setType(JobType type) {
         this.type = type;
+    }
+
+    public Jobshift getShift() {
+        return this.shift;
+    }
+
+    public BasicDetails shift(Jobshift shift) {
+        this.shift = shift;
+        return this;
+    }
+
+    public void setShift(Jobshift shift) {
+        this.shift = shift;
     }
 
     public Long getMinSalary() {
@@ -229,6 +258,32 @@ public class BasicDetails implements Serializable {
         this.gender = gender;
     }
 
+    public JobDetails getJobDetails() {
+        return this.jobDetails;
+    }
+
+    public BasicDetails jobDetails(JobDetails jobDetails) {
+        this.setJobDetails(jobDetails);
+        return this;
+    }
+
+    public void setJobDetails(JobDetails jobDetails) {
+        this.jobDetails = jobDetails;
+    }
+
+    public Apply getApply() {
+        return this.apply;
+    }
+
+    public BasicDetails apply(Apply apply) {
+        this.setApply(apply);
+        return this;
+    }
+
+    public void setApply(Apply apply) {
+        this.apply = apply;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -256,6 +311,7 @@ public class BasicDetails implements Serializable {
             ", jobRole='" + getJobRole() + "'" +
             ", workFromHome='" + getWorkFromHome() + "'" +
             ", type='" + getType() + "'" +
+            ", shift='" + getShift() + "'" +
             ", minSalary=" + getMinSalary() +
             ", maxSalRY=" + getMaxSalRY() +
             ", openings=" + getOpenings() +

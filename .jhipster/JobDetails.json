@@ -25,7 +25,15 @@
       "fieldValidateRules": ["required"]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "interviewInformation",
+      "otherEntityRelationshipName": "jobDetails",
+      "relationshipName": "interviewInformation",
+      "ownerSide": true
+    }
+  ],
   "entityTableName": "job_details",
   "dto": "no",
   "pagination": "no",

@@ -140,6 +140,31 @@
             </small>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.jobDetails.interviewInformation" for="field_interviewInformation"
+            >Interview Information</label
+          >
+          <select
+            class="form-control"
+            id="field_interviewInformation"
+            data-cy="interviewInformation"
+            name="interviewInformation"
+            formControlName="interviewInformation"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                interviewInformationOption.id === editForm.get('interviewInformation')!.value?.id
+                  ? editForm.get('interviewInformation')!.value
+                  : interviewInformationOption
+              "
+              *ngFor="let interviewInformationOption of interviewInformationsCollection; trackBy: trackInterviewInformationById"
+            >
+              {{ interviewInformationOption.id }}
+            </option>
+          </select>
+        </div>
       </div>
 
       <div>

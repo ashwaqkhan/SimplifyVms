@@ -12,7 +12,14 @@
       "fieldValidateRules": ["required"]
     }
   ],
-  "relationships": [],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "basicDetails",
+      "otherEntityRelationshipName": "apply",
+      "relationshipName": "basicDetails"
+    }
+  ],
   "entityTableName": "apply",
   "dto": "no",
   "pagination": "no",

@@ -22,7 +22,8 @@
       "requiredSkills": "Required Skills",
       "english": "English",
       "jobDescription": "Job Description",
-      "securityDepositCharged": "Security Deposit Charged"
+      "securityDepositCharged": "Security Deposit Charged",
+      "interviewInformation": "Interview Information"
     }
   }
 }

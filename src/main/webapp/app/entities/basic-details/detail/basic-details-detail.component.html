@@ -26,6 +26,10 @@
         <dd>
           <span jhiTranslate="{{ 'simplifyVmsApp.JobType.' + basicDetails.type }}">{{ basicDetails.type }}</span>
         </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.basicDetails.shift">Shift</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'simplifyVmsApp.Jobshift.' + basicDetails.shift }}">{{ basicDetails.shift }}</span>
+        </dd>
         <dt><span jhiTranslate="simplifyVmsApp.basicDetails.minSalary">Min Salary</span></dt>
         <dd>
           <span>{{ basicDetails.minSalary }}</span>
@@ -57,6 +61,18 @@
         <dt><span jhiTranslate="simplifyVmsApp.basicDetails.gender">Gender</span></dt>
         <dd>
           <span jhiTranslate="{{ 'simplifyVmsApp.GenderReq.' + basicDetails.gender }}">{{ basicDetails.gender }}</span>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.basicDetails.jobDetails">Job Details</span></dt>
+        <dd>
+          <div *ngIf="basicDetails.jobDetails">
+            <a [routerLink]="['/job-details', basicDetails.jobDetails?.id, 'view']">{{ basicDetails.jobDetails?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.basicDetails.apply">Apply</span></dt>
+        <dd>
+          <div *ngIf="basicDetails.apply">
+            <a [routerLink]="['/apply', basicDetails.apply?.id, 'view']">{{ basicDetails.apply?.id }}</a>
+          </div>
         </dd>
       </dl>
 

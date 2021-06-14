@@ -145,6 +145,9 @@ public class BasicDetailsResource {
                     if (basicDetails.getType() != null) {
                         existingBasicDetails.setType(basicDetails.getType());
                     }
+                    if (basicDetails.getShift() != null) {
+                        existingBasicDetails.setShift(basicDetails.getShift());
+                    }
                     if (basicDetails.getMinSalary() != null) {
                         existingBasicDetails.setMinSalary(basicDetails.getMinSalary());
                     }

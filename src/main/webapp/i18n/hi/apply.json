@@ -20,7 +20,8 @@
       },
       "id": "ID",
       "name": "Name",
-      "mobileNo": "Mobile No"
+      "mobileNo": "Mobile No",
+      "basicDetails": "Basic Details"
     }
   }
 }

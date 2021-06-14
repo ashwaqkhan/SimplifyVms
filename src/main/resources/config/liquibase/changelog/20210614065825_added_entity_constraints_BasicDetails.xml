@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity BasicDetails.
+    -->
+    <changeSet id="20210614065825-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="job_details_id"
+                                 baseTableName="basic_details"
+                                 constraintName="fk_basic_details__job_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_details"/>
+
+        <addForeignKeyConstraint baseColumnNames="apply_id"
+                                 baseTableName="basic_details"
+                                 constraintName="fk_basic_details__apply_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="apply"/>
+    </changeSet>
+</databaseChangeLog>

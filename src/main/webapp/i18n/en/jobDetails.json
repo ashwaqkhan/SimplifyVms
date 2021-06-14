@@ -1,0 +1,28 @@
+{
+  "simplifyVmsApp": {
+    "jobDetails": {
+      "home": {
+        "title": "Job Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Job Details",
+        "createOrEditLabel": "Create or edit a Job Details",
+        "search": "Search for Job Details",
+        "notFound": "No Job Details found"
+      },
+      "created": "A new Job Details is created with identifier {{ param }}",
+      "updated": "A Job Details is updated with identifier {{ param }}",
+      "deleted": "A Job Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Job Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Job Details"
+      },
+      "id": "ID",
+      "requiredSkills": "Required Skills",
+      "english": "English",
+      "jobDescription": "Job Description",
+      "securityDepositCharged": "Security Deposit Charged"
+    }
+  }
+}

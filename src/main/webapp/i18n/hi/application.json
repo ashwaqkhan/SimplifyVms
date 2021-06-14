@@ -1,0 +1,9 @@
+{
+  "simplifyVmsApp": {
+    "Application": {
+      "null": "",
+      "EntireCity": "EntireCity",
+      "EntireIndia": "EntireIndia"
+    }
+  }
+}

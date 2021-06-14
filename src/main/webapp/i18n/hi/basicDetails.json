@@ -1,0 +1,35 @@
+{
+  "simplifyVmsApp": {
+    "basicDetails": {
+      "home": {
+        "title": "BasicDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Basic Details बनाएँ",
+        "createOrEditLabel": "Basic Details बनाएँ या संपादित करें",
+        "search": "Basic Details खोजें",
+        "notFound": "No Basic Details found"
+      },
+      "created": "एक नया Basic Details [identifier: {{ param }}] तैयार है",
+      "updated": "एक Basic Details [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Basic Details [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Basic Details [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Basic Details"
+      },
+      "id": "ID",
+      "jobRole": "Job Role",
+      "workFromHome": "Work From Home",
+      "type": "Type",
+      "minSalary": "Min Salary",
+      "maxSalRY": "Max Sal RY",
+      "openings": "Openings",
+      "workingDays": "Working Days",
+      "workTimings": "Work Timings",
+      "minEducation": "Min Education",
+      "experience": "Experience",
+      "gender": "Gender"
+    }
+  }
+}

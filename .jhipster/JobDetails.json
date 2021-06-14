@@ -1,0 +1,39 @@
+{
+  "name": "JobDetails",
+  "fields": [
+    {
+      "fieldName": "requiredSkills",
+      "fieldType": "SkillReq",
+      "fieldValues": "Computer_or_Laptop_Ownersip,Wifi_Or_Internet,Html,Css,JavaScript,Bootstrap,JQuery,Sql,Php,React,Nodejs,Angularjs,Ajax,WordPress,WebDesigning",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "english",
+      "fieldType": "ReqEnglish",
+      "fieldValues": "NOEnglish,ThodaEnglish,GoodEnglish,FluentEnglish",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "jobDescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "securityDepositCharged",
+      "fieldType": "DepositCharged",
+      "fieldValues": "Yes,No",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "job_details",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210614065826"
+}

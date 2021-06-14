@@ -1,0 +1,11 @@
+{
+  "simplifyVmsApp": {
+    "ReqEnglish": {
+      "null": "",
+      "NOEnglish": "NOEnglish",
+      "ThodaEnglish": "ThodaEnglish",
+      "GoodEnglish": "GoodEnglish",
+      "FluentEnglish": "FluentEnglish"
+    }
+  }
+}

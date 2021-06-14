@@ -1,0 +1,9 @@
+{
+  "simplifyVmsApp": {
+    "DepositCharged": {
+      "null": "",
+      "Yes": "Yes",
+      "No": "No"
+    }
+  }
+}

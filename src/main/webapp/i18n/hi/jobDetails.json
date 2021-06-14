@@ -1,0 +1,28 @@
+{
+  "simplifyVmsApp": {
+    "jobDetails": {
+      "home": {
+        "title": "JobDetails",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Job Details बनाएँ",
+        "createOrEditLabel": "Job Details बनाएँ या संपादित करें",
+        "search": "Job Details खोजें",
+        "notFound": "No Job Details found"
+      },
+      "created": "एक नया Job Details [identifier: {{ param }}] तैयार है",
+      "updated": "एक Job Details [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Job Details [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Job Details [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Job Details"
+      },
+      "id": "ID",
+      "requiredSkills": "Required Skills",
+      "english": "English",
+      "jobDescription": "Job Description",
+      "securityDepositCharged": "Security Deposit Charged"
+    }
+  }
+}

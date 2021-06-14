@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jobDetails">
+      <h2 data-cy="jobDetailsDetailsHeading"><span jhiTranslate="simplifyVmsApp.jobDetails.detail.title">Job Details</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ jobDetails.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.jobDetails.requiredSkills">Required Skills</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'simplifyVmsApp.SkillReq.' + jobDetails.requiredSkills }}">{{ jobDetails.requiredSkills }}</span>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.jobDetails.english">English</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'simplifyVmsApp.ReqEnglish.' + jobDetails.english }}">{{ jobDetails.english }}</span>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.jobDetails.jobDescription">Job Description</span></dt>
+        <dd>
+          <span>{{ jobDetails.jobDescription }}</span>
+        </dd>
+        <dt><span jhiTranslate="simplifyVmsApp.jobDetails.securityDepositCharged">Security Deposit Charged</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'simplifyVmsApp.DepositCharged.' + jobDetails.securityDepositCharged }}">{{
+            jobDetails.securityDepositCharged
+          }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/job-details', jobDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

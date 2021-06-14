@@ -1,0 +1,147 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-interview-information-heading"
+        data-cy="InterviewInformationCreateUpdateHeading"
+        jhiTranslate="simplifyVmsApp.interviewInformation.home.createOrEditLabel"
+      >
+        Create or edit a Interview Information
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.companyName" for="field_companyName"
+            >Company Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            id="field_companyName"
+            data-cy="companyName"
+            formControlName="companyName"
+          />
+          <div *ngIf="editForm.get('companyName')!.invalid && (editForm.get('companyName')!.dirty || editForm.get('companyName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('companyName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.recruitersName" for="field_recruitersName"
+            >Recruiters Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recruitersName"
+            id="field_recruitersName"
+            data-cy="recruitersName"
+            formControlName="recruitersName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.hRwhatsappNumber" for="field_hRwhatsappNumber"
+            >H Rwhatsapp Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="hRwhatsappNumber"
+            id="field_hRwhatsappNumber"
+            data-cy="hRwhatsappNumber"
+            formControlName="hRwhatsappNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.contactEmail" for="field_contactEmail"
+            >Contact Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactEmail"
+            id="field_contactEmail"
+            data-cy="contactEmail"
+            formControlName="contactEmail"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.buildingName" for="field_buildingName"
+            >Building Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="buildingName"
+            id="field_buildingName"
+            data-cy="buildingName"
+            formControlName="buildingName"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.city" for="field_city">City</label>
+          <input type="text" class="form-control" name="city" id="field_city" data-cy="city" formControlName="city" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.interviewInformation.area" for="field_area">Area</label>
+          <input type="text" class="form-control" name="area" id="field_area" data-cy="area" formControlName="area" />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="simplifyVmsApp.interviewInformation.recieveApplicationsFrom"
+            for="field_recieveApplicationsFrom"
+            >Recieve Applications From</label
+          >
+          <select
+            class="form-control"
+            name="recieveApplicationsFrom"
+            formControlName="recieveApplicationsFrom"
+            id="field_recieveApplicationsFrom"
+            data-cy="recieveApplicationsFrom"
+          >
+            <option [ngValue]="null">{{ 'simplifyVmsApp.Application.null' | translate }}</option>
+            <option value="EntireCity">{{ 'simplifyVmsApp.Application.EntireCity' | translate }}</option>
+            <option value="EntireIndia">{{ 'simplifyVmsApp.Application.EntireIndia' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-job-details-heading"
+        data-cy="JobDetailsCreateUpdateHeading"
+        jhiTranslate="simplifyVmsApp.jobDetails.home.createOrEditLabel"
+      >
+        Create or edit a Job Details
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.jobDetails.requiredSkills" for="field_requiredSkills"
+            >Required Skills</label
+          >
+          <select
+            class="form-control"
+            name="requiredSkills"
+            formControlName="requiredSkills"
+            id="field_requiredSkills"
+            data-cy="requiredSkills"
+          >
+            <option [ngValue]="null">{{ 'simplifyVmsApp.SkillReq.null' | translate }}</option>
+            <option value="Computer_or_Laptop_Ownersip">{{ 'simplifyVmsApp.SkillReq.Computer_or_Laptop_Ownersip' | translate }}</option>
+            <option value="Wifi_Or_Internet">{{ 'simplifyVmsApp.SkillReq.Wifi_Or_Internet' | translate }}</option>
+            <option value="Html">{{ 'simplifyVmsApp.SkillReq.Html' | translate }}</option>
+            <option value="Css">{{ 'simplifyVmsApp.SkillReq.Css' | translate }}</option>
+            <option value="JavaScript">{{ 'simplifyVmsApp.SkillReq.JavaScript' | translate }}</option>
+            <option value="Bootstrap">{{ 'simplifyVmsApp.SkillReq.Bootstrap' | translate }}</option>
+            <option value="JQuery">{{ 'simplifyVmsApp.SkillReq.JQuery' | translate }}</option>
+            <option value="Sql">{{ 'simplifyVmsApp.SkillReq.Sql' | translate }}</option>
+            <option value="Php">{{ 'simplifyVmsApp.SkillReq.Php' | translate }}</option>
+            <option value="React">{{ 'simplifyVmsApp.SkillReq.React' | translate }}</option>
+            <option value="Nodejs">{{ 'simplifyVmsApp.SkillReq.Nodejs' | translate }}</option>
+            <option value="Angularjs">{{ 'simplifyVmsApp.SkillReq.Angularjs' | translate }}</option>
+            <option value="Ajax">{{ 'simplifyVmsApp.SkillReq.Ajax' | translate }}</option>
+            <option value="WordPress">{{ 'simplifyVmsApp.SkillReq.WordPress' | translate }}</option>
+            <option value="WebDesigning">{{ 'simplifyVmsApp.SkillReq.WebDesigning' | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('requiredSkills')!.invalid && (editForm.get('requiredSkills')!.dirty || editForm.get('requiredSkills')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('requiredSkills')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.jobDetails.english" for="field_english">English</label>
+          <select class="form-control" name="english" formControlName="english" id="field_english" data-cy="english">
+            <option [ngValue]="null">{{ 'simplifyVmsApp.ReqEnglish.null' | translate }}</option>
+            <option value="NOEnglish">{{ 'simplifyVmsApp.ReqEnglish.NOEnglish' | translate }}</option>
+            <option value="ThodaEnglish">{{ 'simplifyVmsApp.ReqEnglish.ThodaEnglish' | translate }}</option>
+            <option value="GoodEnglish">{{ 'simplifyVmsApp.ReqEnglish.GoodEnglish' | translate }}</option>
+            <option value="FluentEnglish">{{ 'simplifyVmsApp.ReqEnglish.FluentEnglish' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('english')!.invalid && (editForm.get('english')!.dirty || editForm.get('english')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('english')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="simplifyVmsApp.jobDetails.jobDescription" for="field_jobDescription"
+            >Job Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="jobDescription"
+            id="field_jobDescription"
+            data-cy="jobDescription"
+            formControlName="jobDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('jobDescription')!.invalid && (editForm.get('jobDescription')!.dirty || editForm.get('jobDescription')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('jobDescription')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="simplifyVmsApp.jobDetails.securityDepositCharged"
+            for="field_securityDepositCharged"
+            >Security Deposit Charged</label
+          >
+          <select
+            class="form-control"
+            name="securityDepositCharged"
+            formControlName="securityDepositCharged"
+            id="field_securityDepositCharged"
+            data-cy="securityDepositCharged"
+          >
+            <option [ngValue]="null">{{ 'simplifyVmsApp.DepositCharged.null' | translate }}</option>
+            <option value="Yes">{{ 'simplifyVmsApp.DepositCharged.Yes' | translate }}</option>
+            <option value="No">{{ 'simplifyVmsApp.DepositCharged.No' | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('securityDepositCharged')!.invalid &&
+              (editForm.get('securityDepositCharged')!.dirty || editForm.get('securityDepositCharged')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('securityDepositCharged')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

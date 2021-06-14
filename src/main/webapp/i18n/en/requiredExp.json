@@ -1,0 +1,9 @@
+{
+  "simplifyVmsApp": {
+    "RequiredExp": {
+      "null": "",
+      "Fresher": "Fresher",
+      "Experienced": "Experienced"
+    }
+  }
+}

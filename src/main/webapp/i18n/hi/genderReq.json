@@ -1,0 +1,10 @@
+{
+  "simplifyVmsApp": {
+    "GenderReq": {
+      "null": "",
+      "Male": "Male",
+      "Female": "Female",
+      "Any": "Any"
+    }
+  }
+}

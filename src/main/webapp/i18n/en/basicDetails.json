@@ -1,0 +1,35 @@
+{
+  "simplifyVmsApp": {
+    "basicDetails": {
+      "home": {
+        "title": "Basic Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Basic Details",
+        "createOrEditLabel": "Create or edit a Basic Details",
+        "search": "Search for Basic Details",
+        "notFound": "No Basic Details found"
+      },
+      "created": "A new Basic Details is created with identifier {{ param }}",
+      "updated": "A Basic Details is updated with identifier {{ param }}",
+      "deleted": "A Basic Details is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Basic Details {{ id }}?"
+      },
+      "detail": {
+        "title": "Basic Details"
+      },
+      "id": "ID",
+      "jobRole": "Job Role",
+      "workFromHome": "Work From Home",
+      "type": "Type",
+      "minSalary": "Min Salary",
+      "maxSalRY": "Max Sal RY",
+      "openings": "Openings",
+      "workingDays": "Working Days",
+      "workTimings": "Work Timings",
+      "minEducation": "Min Education",
+      "experience": "Experience",
+      "gender": "Gender"
+    }
+  }
+}
